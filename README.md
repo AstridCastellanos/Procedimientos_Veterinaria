@@ -94,3 +94,7 @@ Este taller contiene el desarrollo de una BD relacional para una veterinaria, ju
     -- Procedimiento 19
     CALL sp_registrar_multiples_servicios(2, '1,2,3');
     SELECT * FROM mascota_servicio;
+
+## Video Explicativo
+
+    https://drive.google.com/file/d/1Gn1hjxBoCitvAtY7Upu6XuPAhIbriKyb/view?usp=sharing 
