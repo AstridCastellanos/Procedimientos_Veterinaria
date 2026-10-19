@@ -27,10 +27,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR ('María López', 'Zona 1, Ciudad de Guatemala', 'maria.lopez@gmail.com', 
-CALL sp_insertar_cliente('Astrid Castellanos', 'Moyuta, Jutiapa', 'astrid.corado@gmail.com');
-SELECT * FROM clientes;
-
 -- 2. Actualizar Estado del Cliente
 DELIMITER $$
 CREATE PROCEDURE sp_actualizar_estado_cliente(
@@ -50,10 +46,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_actualizar_estado_cliente(7, 1);
-SELECT * FROM clientes;
-
 -- 3. Contar Mascotas por Cliente
 DELIMITER $$
 CREATE PROCEDURE sp_contar_mascotas_cliente(
@@ -66,11 +58,6 @@ BEGIN
     WHERE IdCliente = p_IdCliente;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_contar_mascotas_cliente(3, @total);
-SELECT @total AS total_mascotas;
-SELECT * FROM mascotas;
 
 -- 4. Listar Servicios de una Mascota
 DELIMITER $$
@@ -85,9 +72,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_listar_servicios_mascota(6);
-
 -- 5. Registrar Servicio a Mascota
 DELIMITER $$
 CREATE PROCEDURE sp_registrar_servicio_mascota(
@@ -101,10 +85,6 @@ BEGIN
     SELECT 'Servicio registrado correctamente.' AS mensaje_exito;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_registrar_servicio_mascota(2, 3, CURDATE());
-SELECT * FROM mascota_servicio;
 
 -- 6. Eliminar Mascota
 DELIMITER $$
@@ -121,10 +101,6 @@ BEGIN
     SELECT 'Mascota y sus servicios fueron eliminados correctamente.' AS mensaje_exito;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_eliminar_mascota(10);
-SELECT * FROM mascotas;
 
 -- 7. Actualizar Precio de Servicio
 DELIMITER $$
@@ -144,10 +120,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_actualizar_precio_servicio(1, 160.00);
-SELECT * FROM servicios;
-
 -- 8. Contar Servicios por Mascota
 DELIMITER $$
 CREATE PROCEDURE sp_contar_servicios_mascota(
@@ -160,11 +132,6 @@ BEGIN
     WHERE IdMascota = p_IdMascota;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_contar_servicios_mascota(1, @total_serv);
-SELECT @total_serv AS total_servicios;
-SELECT * FROM mascota_servicio;
 
 -- 9. Incrementar Salario de Servicios
 DELIMITER $$
@@ -179,10 +146,6 @@ END $$
 DELIMITER ;
 
 SET SQL_SAFE_UPDATES = 0;
-
--- APLICAR (Incrementar un 10%)
-CALL sp_incrementar_precio_servicios(10.00);
-SELECT * FROM servicios;
 
 -- 10. Repetir Registro de Servicio
 DELIMITER $$
@@ -209,10 +172,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_repetir_registro_servicio(1, 2, 3);
-SELECT * FROM mascota_servicio;
-
 -- 11. Verificar Existencia de Correo Electrónico
 DELIMITER $$
 CREATE PROCEDURE sp_verificar_correo(
@@ -226,11 +185,6 @@ BEGIN
     END IF;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_verificar_correo('maria.lopz@gmail.com');
-SELECT * FROM clientes;
-
 
 -- 12. Aumentar Estatura de Mascotas
 DELIMITER $$
@@ -263,10 +217,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_aumentar_estatura_mascotas(0.05);
-SELECT * FROM mascotas;
-
 -- 13. Clasificar Mascotas por Estatura
 DELIMITER $$
 CREATE PROCEDURE sp_clasificar_mascotas()
@@ -276,9 +226,6 @@ BEGIN
     FROM mascotas;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_clasificar_mascotas();
 
 -- 14. Contar Clientes Activos
 DELIMITER $$
@@ -291,11 +238,6 @@ BEGIN
     WHERE activo = 1;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_contar_clientes_activos(@activos);
-SELECT @activos AS clientes_activos;
-SELECT * FROM clientes;
 
 -- 15. Actualizar Mascota
 DELIMITER $$
@@ -316,10 +258,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_actualizar_mascota(1, 'Firulais II', 0.40);
-SELECT * FROM mascotas WHERE IdMascota = 1;
-
 -- 16. Eliminar Servicios por Nombre
 DELIMITER $$
 CREATE PROCEDURE sp_eliminar_servicio_nombre(
@@ -338,10 +276,6 @@ BEGIN
 END $$
 DELIMITER ;
 
--- APLICAR
-CALL sp_eliminar_servicio_nombre('Microchip');
-SELECT * FROM servicios;
-
 -- 17. Listar Mascotas por Cliente
 DELIMITER $$
 CREATE PROCEDURE sp_listar_mascotas_cliente(
@@ -353,9 +287,6 @@ BEGIN
     WHERE IdCliente = p_IdCliente;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_listar_mascotas_cliente(1);
 
 -- 18. Transferir Mascota a Otro Cliente
 DELIMITER $$
@@ -376,10 +307,6 @@ BEGIN
     END IF;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_transferir_mascota(1, 2);
-SELECT * FROM mascotas;
 
 -- 19. Registrar Múltiples Servicios 
 DELIMITER $$
@@ -416,7 +343,3 @@ BEGIN
     SELECT 'Los servicios fueron registrados correctamente.' AS mensaje_exito;
 END $$
 DELIMITER ;
-
--- APLICAR
-CALL sp_registrar_multiples_servicios(2, '1,2,3');
-SELECT * FROM mascota_servicio;
